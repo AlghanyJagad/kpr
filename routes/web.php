@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('register', 'AccountController');
             Route::get('/verifikasi', 'AccountController@verifikasi_index_account')->name('verifikasi');
             Route::patch('/verified/{id}', 'AccountController@verified')->name('verified');
+            Route::get('/searchuser/admin', 'AccountController@search_admin')->name('admin.search');
         });
         Route::prefix('rekapdata')->name('rekapdata.')->group(function () {
             Route::get('/Bulan', 'RekapdataController@getBulan')->name('bulan');
@@ -73,4 +74,5 @@ Route::middleware('auth')->group(function () {
         Route::get('/search', 'AccountController@seacrh')->name('search');
     });
     Route::get('/kalkulator', 'HomeController@kalkulator')->name('kalkulator');
+    Route::post('/hitung', 'HomeController@HitungKalkulator')->name('hitung');
 });

@@ -127,8 +127,12 @@ class AccountController extends Controller
         $user->delete();
         return back();
     }
-    public function search($data)
+    public function search_admin()
     {
-        echo $data[0];
+        $query = request('query');
+        $account = User::where('role', '0')->where("name", "like", "%$query%")->latest()->paginate(5);
+        return view('admin.account.admin.index', [
+            'accounts' => $account
+        ]);
     }
 }

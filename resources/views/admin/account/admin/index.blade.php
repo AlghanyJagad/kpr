@@ -9,9 +9,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="input-group">
-                                    <input class="form-control" id="validationTooltip02" type="text" placeholder="Search" required="">
-                                    <div class="valid-tooltip">Looks good!</div>
-                                    <button class="btn btn-secondary ml-2">Search</button>
+                                    <form method="GET" action="{{ route('admin.account.admin.search') }}">
+                                        <input class="form-control" id="validationTooltip02" type="text" name="query" placeholder="Search" required="">
+                                        <div class="valid-tooltip">Looks good!</div>
+                                        <button type="submit" class="btn btn-secondary ml-2">Search</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
