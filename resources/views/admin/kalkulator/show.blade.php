@@ -11,31 +11,31 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tr>
-                                  <th class="thead bg-warning" >No</th>
-                                  <th class="thead bg-warning" >Angsuran Bunga</th>
-                                  <th class="thead bg-warning" >Angsuran Pokok</th>
-                                  <th class="thead bg-warning" >Sisa Pinjaman Pokok</th>
+                                  <th>no</th>
+                                  @php
+                                      for($i = 0; $i <= $no;$i++){
+                                        echo '<td>'. $i .'</td>';
+                                      }
+                                  @endphp
                                 </tr>
-                                @foreach ($object as $item)
-                                  <tr>
-                                    <td></td>
-                                    <td>{{$object->bunga}}</td>
-                                    <td>{{$object->pokok}}</td>
-                                    <td>{{$object->pinjaman}}</td>
-                                  </tr>
-                                @endforeach
-                                    {{-- 
+                                <tr>
+                                    <th>bunga</th>
                                     @foreach ($all['bunga'] as $data)
                                         <td>{{ $data }}</td>
                                     @endforeach
-                                    
+                                </tr>
+                                <tr>
+                                    <th>pokok</th>
                                     @foreach ($all['pokok'] as $data)
                                         <td>{{ $data }}</td>
                                     @endforeach
-                                    
+                                </tr>
+                                <tr>
+                                    <th>pinjaman</th>
                                     @foreach ($all['pinjaman'] as $data)
                                         <td>{{ $data }}</td>
-                                    @endforeach --}}
+                                    @endforeach
+                                </tr>
                             </table>
                         </div>
                     </div>

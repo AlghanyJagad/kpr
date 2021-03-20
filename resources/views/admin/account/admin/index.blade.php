@@ -4,21 +4,22 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <form action="" method="post">
-                    <div class="d-flex justify-content-end">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="input-group">
-                                    <form method="GET" action="{{ route('admin.account.admin.search') }}">
-                                        <input class="form-control" id="validationTooltip02" type="text" name="query" placeholder="Search" required="">
+                <div class="justify-content-between">
+                    <a href="{{ route('admin.account.admin') }}" class="btn btn-info"><i class="fa fa-refresh"></i></a>
+                    <form action="{{ route('admin.account.search.admin') }}" method="GET">
+                        <div class="d-flex justify-content-end">
+                            <div class="row">
+    s                            <div class="col-md-12">
+                                    <div class="input-group">
+                                        <input class="form-control" id="validationTooltip02" type="search" name="query" placeholder="Search" required="">
                                         <div class="valid-tooltip">Looks good!</div>
-                                        <button type="submit" class="btn btn-secondary ml-2">Search</button>
-                                    </form>
+                                        <button class="btn btn-secondary ml-2">Search</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -51,11 +52,7 @@
                                 <td><span class="badge badge-light">DILINDUNGI<span></td>
                                 <td>
                                     <a href="{{ route('admin.account.register.edit', $account->id) }}" style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
-                                    <form action="{{ route('admin.account.register.destroy', $account->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Sure for delete this data?')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>
-                                    </form>
+                                    @include('alert.deleteUser')  
                                 </td>
                             </tr>
                         </tbody>

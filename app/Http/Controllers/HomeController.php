@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pangkat;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -24,15 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $cek_role = User::where('role', auth()->user()->role == 2);
-        return view('home');
+        return view('home', [
+            'user' => User::whereIn('role', ['2', '3'])->count(),
+            'pengelola' => User::where('role', 1)->count(),
+            'admin' => User::where('role', 0)->count(),
+            'pangkats' => Pangkat::count()
+        ]);
     }
-
-    public function kalkulator()
-    {
-        return view('admin.kalkulator.index');
+    public function kalkulator(){
+        return view ('admin.kalkulator.index');
     }
-
     public function HitungKalkulator(Request $request)
     {
         $besar_pinjaman = $request->besar_pinjam;
@@ -48,7 +50,10 @@ class HomeController extends Controller
         $anuitas = round($fax, 6);
 
         $besar_angsur = ($besar_pinjaman * $anuitas) / 12;
-            $besar_angsuran = round($besar_angsur, -2) + 100;
+        $bulat_angsur = round($besar_angsur);
+        // if (substr($a, -2) >= 1) {
+            $besar_angsuran = round($bulat_angsur, -2) + 100;
+        // }
         // dd($besar_angsuran);
         //angsuran bunga = pinjaman pokok * bungapersen/ 12-24-36-48-60-72-84-96
         // $besar_angsuran = besarAngsuran($besar_pinjaman,$getAnuitas);
@@ -58,9 +63,7 @@ class HomeController extends Controller
         $no = 1;
         $angsuran_bunga = $besar_pinjaman * $bungapersen / 12;
         $angsuran_pokok = $besar_angsuran - $angsuran_bunga;
-
-        $loopingjangka = $jangka+1;
-        for ($i = 1; $i < $loopingjangka; $i++) {
+        for ($i = 1; $i < $jangka; $i++) {
 
             if ($no == 13) {
                 $ang_bunga = $besar_pinjaman * $bungapersen / 12;
@@ -76,23 +79,19 @@ class HomeController extends Controller
             $besar_pinjaman -= $array2[$i];
             array_push($array3, $besar_pinjaman);
         }
-         // echo 'besar_angsuran '.$besar_angsuran;
-         $array_all = ['bunga'=>$array1,
-         'pokok'=>$array2,
-         'pinjaman'=>$array3,
-     ];
-    //   dd($array_all);
-     // return response()->json($array_all);
-     $object = new \stdClass();
-		if (is_array($array_all))
-		{
-			foreach ($array_all as $kolom=>$isi)
-			{
-				$kolom = strtolower(trim($kolom));
-				$object->$kolom = $isi;
-			}
-		}
-     return view('admin.kalkulator.show','object',$object);
-         //  return view('admin.kalkulator.show',['array1' => $array1],['array2' => $array2], ['array2' => $array3]);
+        // echo 'besar_angsuran '.$besar_angsuran;
+        $array_all = ['bunga'=>$array1,
+        'pokok'=>$array2,
+        'pinjaman'=>$array3,
+    ];
+        // return response()->json($array_all);
+        return view('admin.kalkulator.show',[
+            'all' => $array_all,
+            'besar_angsuran'=>$besar_angsuran,
+            'no' => intval($jangka)
+            ]);
+            // 'ang_bunga' => $array1,
+            // 'ang_pokok' => $array2,
+            // 'besar_pinjaman' => $array3
     }
 }

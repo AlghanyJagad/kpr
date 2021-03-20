@@ -10,7 +10,7 @@ Route::middleware('guest')->group(function () {
     // user landing page
     Route::get('/', function () {
         return view('index');
-    });
+    })->name('index');
     Route::get('/register', function () {
         return view('auth.register');
     });
@@ -52,13 +52,17 @@ Route::middleware('auth')->group(function () {
             Route::resource('register', 'AccountController');
             Route::get('/verifikasi', 'AccountController@verifikasi_index_account')->name('verifikasi');
             Route::patch('/verified/{id}', 'AccountController@verified')->name('verified');
-            Route::get('/searchuser/admin', 'AccountController@search_admin')->name('admin.search');
+            Route::get('/search/admin', 'AccountController@search_admin')->name('search.admin');
+            Route::get('/search/pengelola', 'AccountController@search_pengelola')->name('search.pengelola');
+            Route::get('/user/export/excel', 'AccountController@userExportExcel')->name('user.export.excel');
+            Route::get('/user/export/pdf', 'AccountController@userExportPdf')->name('user.export.pdf');
         });
         Route::prefix('rekapdata')->name('rekapdata.')->group(function () {
             Route::get('/Bulan', 'RekapdataController@getBulan')->name('bulan');
             Route::get('/Tahun', 'RekapdataController@getTahun')->name('tahun');
         });
         Route::prefix('detaildata')->name('detaildata.')->group(function () {
+            Route::get('/cari', 'DetaildataController@cari')->name('cariid');
             Route::get('/AngsuranKe', 'DetaildataController@getAngsuranKe')->name('angsuranke');
             Route::get('/Pokok', 'DetaildataController@getPokok')->name('pokok');
             Route::get('/Bunga', 'DetaildataController@getBunga')->name('bunga');
@@ -67,11 +71,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/{pinjam}', 'DetaildataController@getindex')->name('pinjam');
             Route::put('/status/{pinjam}', 'DetaildataController@statusupdate')->name('status');
             Route::put('/decline/{pinjam}', 'DetaildataController@statusdecline')->name('statusdecline');
-            Route::post('/status/{id}', 'DetaildataController@cari')->name('carinama');
         });
 
         Route::resource('pangkat', 'PangkatController');
-        Route::get('/search', 'AccountController@seacrh')->name('search');
     });
     Route::get('/kalkulator', 'HomeController@kalkulator')->name('kalkulator');
     Route::post('/hitung', 'HomeController@HitungKalkulator')->name('hitung');

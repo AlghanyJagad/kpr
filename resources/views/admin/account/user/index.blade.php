@@ -9,6 +9,10 @@
                     <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal">Add</button>
                   </div>
                 </div> --}}
+                <div class="card-header">
+                    <a href="{{ route('admin.account.user.export.excel') }}" class="btn btn-success">Export User Excel</a>
+                    <a href="{{ route('admin.account.user.export.pdf') }}" class="btn btn-danger">Export User PDF</a>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -59,11 +63,7 @@
                                             @endif
                                         </div>
                                         <a href="{{ route('admin.account.register.edit', $account->id) }}" style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
-                                        <form action="{{ route('admin.account.register.destroy', $account->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" onclick="return confirm('Sure for delete this data?')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>
-                                        </form>
+                                        @include('alert.deleteUser')  
                                 </td>
                             </tr>
                         </tbody>

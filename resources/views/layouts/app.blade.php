@@ -70,6 +70,8 @@
     </div>
     <!-- page-wrapper End-->
     <!-- swal vendor-->
+    @include('sweetalert::alert')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     {{-- vanilla js --}}
     @stack('script')
     <!-- latest jquery-->
@@ -105,8 +107,6 @@
     <!-- Plugins JS end-->
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
-    <!-- login js-->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Plugin used-->
 </body>
 
