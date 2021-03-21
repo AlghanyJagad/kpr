@@ -16,7 +16,7 @@ class RekapdataController extends Controller
     public function getBulan()
     {
         $month = Carbon::now()->format('m');
-        $tahunini = DB::table('kpr')->whereYear('tmt_angsuran', $month);
+        $tahunini = DB::table('kpr')->whereMonth('tmt_angsuran', $month)->get();
         $jumlahpinjaman = $tahunini->sum('pinjaman');
         $totaltunggakan = $tahunini->sum('jml_tunggakan');
 
