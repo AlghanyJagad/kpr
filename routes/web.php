@@ -4,8 +4,14 @@
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 // login & register
+Route::get('cache', function(){
+    Artisan::call('optimize:clear');
+    Artisan::call('storage:link');
+});
+
 Route::middleware('guest')->group(function () {
     // user landing page
     Route::get('/', function () {
@@ -79,6 +85,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/{pinjam}', 'DetaildataController@getindex')->name('pinjam');
             Route::put('/status/{pinjam}', 'DetaildataController@statusupdate')->name('status');
             Route::put('/decline/{pinjam}', 'DetaildataController@statusdecline')->name('statusdecline');
+            Route::get('/show/{id}', 'DetaildataController@show')->name('show');
+            Route::get('/approve/pdf/{id}','detaildataController@approve_pdf')->name('approve.pdf');
         });
 
         Route::resource('pangkat', 'PangkatController');
