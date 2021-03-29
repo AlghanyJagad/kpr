@@ -24,10 +24,16 @@ class AccountController extends Controller
 
     public function admin_index_account()
     {
-        $account = User::where('id', '!=', auth()->user()->id)->where('role', '0')->paginate(5);
-        return view('admin.account.admin.index', [
-            'accounts' => $account
-        ]);
+        Alert::warning('Informasi Pesan', 'Sedang Dalam Perbaikan');
+        return back();
+        // $data = Detailkpr::tmt_angsuran()->get();
+        // $jumlahpinjaman = $tahunini->sum('pinjaman');
+        // $totaltunggakan = $tahunini->sum('jml_tunggakan');
+        
+        // $account = User::where('id', '!=', auth()->user()->id)->where('role', '0')->paginate(5);
+        // return view('admin.account.admin.index', [
+        //     'accounts' => $account
+        // ]);
     }
 
     public function pengelola_index_account()

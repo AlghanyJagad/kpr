@@ -27,6 +27,8 @@ Route::middleware('guest')->group(function () {
         Route::get('/register', 'RegisterUser@index')->name('register');
     });
 });
+Route::post('refresh/puitang', 'HomeController@refresh_piutang')->name('refresh.piutang');
+Route::post('refresh/saldo', 'HomeController@refresh_saldo')->name('refresh.saldo');
 
 Auth::routes(['verify' => true]);
 
@@ -52,6 +54,9 @@ Route::middleware('auth')->group(function () {
     });
     // admin
     Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
+        Route::get('/search/data_kpr', 'DetaildataController@search_data_kpr')->name('search.kpr');
+        Route::get('/search/data_manual', 'DetaildataController@search_data_manual')->name('search.manual');
+        
         // management account
         Route::prefix('account')->name('account.')->group(function () {
             // per view & role
@@ -86,7 +91,10 @@ Route::middleware('auth')->group(function () {
             Route::put('/status/{pinjam}', 'DetaildataController@statusupdate')->name('status');
             Route::put('/decline/{pinjam}', 'DetaildataController@statusdecline')->name('statusdecline');
             Route::get('/show/{id}', 'DetaildataController@show')->name('show');
-            Route::get('/approve/pdf/{id}','detaildataController@approve_pdf')->name('approve.pdf');
+            Route::get('/approve/pdf/{id}','DetaildataController@approve_pdf')->name('approve.pdf');
+            Route::get('/refresh/saldo', 'DetaildataController@refresh_saldo')->name('refreshsaldo');
+            Route::get('/refresh/piutang', 'DetaildataController@refresh_piutang')->name('refreshpiutang');
+            Route::get('/{pinjam}/datatables', 'DetaildataController@datatablesGetIndex')->name('datatables');
         });
 
         Route::resource('pangkat', 'PangkatController');

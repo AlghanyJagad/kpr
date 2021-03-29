@@ -16317,19 +16317,8 @@ footer {
   .landing-home .screen1 {
     position: absolute;
     right: 0;
-    top: 150px;
-    -webkit-box-shadow: 0 0 47px 10px rgba(115, 102, 255, 0.1);
-            box-shadow: 0 0 47px 10px rgba(115, 102, 255, 0.1);
-    border-radius: 10px;
-    -webkit-animation: animationleft 20s infinite;
-            animation: animationleft 20s infinite;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease; }
-    .landing-home .screen1:hover {
-      -webkit-transition: all 0.3s ease;
-      transition: all 0.3s ease;
-      -webkit-box-shadow: 0 0 47px 10px rgba(255, 255, 255, 0.35);
-              box-shadow: 0 0 47px 10px rgba(255, 255, 255, 0.35); }
   .landing-home .screen2 {
     position: absolute;
     left: 70px;
@@ -16936,8 +16925,6 @@ footer {
     background-color: var(--theme-deafult); }
     .navbar-toggler span {
       background-color: #fff; }
-  .landing-home .screen1 {
-    left: 100px; }
   .sticky-header .navbar-nav .nav-item .nav-link {
     color: #000;
     padding: 10px 12px !important;
@@ -17008,7 +16995,7 @@ footer {
     overflow: unset;
     background-image: none; }
     .landing-home .navbar-brand img {
-      height: 35px; }
+      height: 140px; }
     .landing-home .screen2 {
       width: 330px;
       left: calc(100% - 200px);
@@ -17021,14 +17008,9 @@ footer {
       z-index: 0; }
     .landing-home .screen1 {
       width: 330px;
-      right: calc(100% - 200px);
-      bottom: -20px;
+      right: 0;
+      bottom: 0;
       left: unset;
-      top: unset;
-      -webkit-transform: rotate(35deg);
-              transform: rotate(35deg);
-      -webkit-animation: none;
-              animation: none;
       z-index: 0; }
     .landing-home .col-xl-7 {
       position: unset; }

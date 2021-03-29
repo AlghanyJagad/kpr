@@ -9,7 +9,7 @@
   <meta name="author" content="pixelstrap">
   <link rel="icon" href="{{ asset('assets/images/logo-tni.png') }}" type="image/x-icon">
   <link rel="shortcut icon" href="{{asset ('assets/images/logo-tni.png')}}" type="image/x-icon">
-  <title>Aplikasi KPR</title>
+  <title>Aplikasi KPR TWP AD</title>
   <!-- Google font-->
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
     rel="stylesheet">
@@ -35,6 +35,15 @@
   <link id="color" rel="stylesheet" href="{{asset('assets/css/color-1.css')}}" media="screen">
   <!-- Responsive css-->
   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MP08M5QZ2F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MP08M5QZ2F');
+</script>
 </head>
 <style>
   html {
@@ -83,7 +92,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="wow fadeIn mt-2"><img style="width:100%;margin-left:80px"
+            <div class="wow fadeIn mt-2"><img style="width:100%;margin-left:80px;margin-top:-20px;"
                 src="{{asset('assets/images/rumahawan.png')}}" alt="rumah"></div>
           </div>
         </div>
@@ -104,7 +113,7 @@
           </div>
           <div class="col-sm-5 offset-sm-2">
 
-            <p>Sejak tahun 2019 Kredit Pemilikan Rumah Swakelola Rumah TNI AD telah tersebar hampir diseluruh
+            <p>Sejak tahun 2009 Kredit Pemilikan Rumah Swakelola Rumah TNI AD telah tersebar hampir diseluruh
               indonesia dengan proses yang memudahkan prajurit untuk memiliki rumah untuk kesejahteraan dan masa depan
               setiap prajurit TNI AD</p>
           </div>
@@ -134,7 +143,7 @@
             <div class="cuba-demo-content mt50">
               <div class="couting">
                 <h1>30+</h1>
-                <p style="color: black;font-size:14px;">Lokasi perumahan tersebar diseluruh indonesia</p>
+                <p style="color: black;font-size:14px;">Lokasi perumahan tersebar diseluruh Indonesia</p>
               </div>
             </div>
           </div>
