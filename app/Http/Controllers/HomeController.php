@@ -133,7 +133,7 @@ class HomeController extends Controller
             ->groupBy('role')
             ->pluck('total', 'role')->all();
 
-        for ($i = 0; $i <= count($groups); $i++) {
+        for ($i = 0; $ conflictsi <= count($groups); $i++) {
             $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
         }
 

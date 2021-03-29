@@ -109,6 +109,41 @@ class DetaildataController extends Controller
         return $data;
     }
 
+    public function datatablesGetIndex($approve)
+    {
+        $data = [];
+        $pinjams = DB::table('kpr');
+        if ($approve == 'approve') {
+            $pinjams = $pinjams->where('status', 1)->orderBy('id', 'ASC');
+            $data = DataTables::queryBuilder($pinjams)
+                ->editColumn('nrp', function ($pinjam) {
+                    return '<span class="badge badge-light">' . $pinjam->nrp . '</span>';
+                })->editColumn('nama', function ($pinjam) {
+                    return '<a href="' . route('admin.detaildata.show', $pinjam->id) . '" class="text-primary">' . $pinjam->nama . '</a>';
+                })->editColumn('pinjaman', function ($pinjam) {
+                    return "IDR. " . number_format($pinjam->pinjaman, 0, ',', '.');
+                })->editColumn('jml_angs', function ($pinjam) {
+                    return "Rp. " . number_format($pinjam->jml_angs, 0, ',', '.');
+                })->editColumn('jml_tunggakan', function ($pinjam) {
+                    return "Rp. " . number_format($pinjam->jml_tunggakan, 0, ',', '.');
+                })->rawColumns(['nrp', 'nama', 'pinjaman', 'jml_angs', 'jml_tunggakan'])
+                ->toJson();
+        } else if ($approve == 'pending') {
+            $pinjams = $pinjams->where('status', 0)->orderBy('id', 'ASC');
+            $data = DataTables::queryBuilder($pinjams)
+                ->editColumn('nrp', function ($pinjam) {
+                    return '<span class="badge badge-light">' . $pinjam->nrp . '</span>';
+                })->editColumn('pinjaman', function ($pinjam) {
+                    return "IDR. " . number_format($pinjam->pinjaman, 0, ',', '.');
+                })->editColumn('jml_angs', function ($pinjam) {
+                    return "Rp. " . number_format($pinjam->jml_angs, 0, ',', '.');
+                })->rawColumns(['nrp', 'nama', 'pinjaman', 'jml_angs', 'jml_tunggakan'])
+                ->toJson();
+        }
+
+        return $data;
+    }
+
     public function statusupdate($id)
     {
         $pinjam = Pinjaman::findOrFail($id);

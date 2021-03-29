@@ -30,7 +30,8 @@
                     <div class="f1-progress">
                         <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3"></div>
                     </div>
-                    @if(auth()->user()->role == "3" || auth()->user()->email_verified_at != null && auth()->user()->role == "2")
+                    @if(auth()->user()->role == "3" || auth()->user()->email_verified_at != null && auth()->user()->role
+                    == "2")
                     <div class="f1-step active">
                         <div class="f1-step-icon"><i class="fa fa-key"></i></div>
                         <p>Email</p>
@@ -67,11 +68,13 @@
                 <fieldset>
                     <div class="form-group mb-2">
                         <label for="f1-first-name">First Name</label>
-                        <input class="form-control" id="f1-first-name" type="text" name="f1-first-name" placeholder="name@example.com" required="">
+                        <input class="form-control" id="f1-first-name" type="text" name="f1-first-name"
+                            placeholder="name@example.com" required="">
                     </div>
                     <div class="form-group mb-2">
                         <label for="f1-last-name">Last name</label>
-                        <input class="f1-last-name form-control" id="f1-last-name" type="text" name="f1-last-name" placeholder="Last name..." required="">
+                        <input class="f1-last-name form-control" id="f1-last-name" type="text" name="f1-last-name"
+                            placeholder="Last name..." required="">
                     </div>
                     <div class="f1-buttons">
                         <button class="btn btn-primary btn-next" type="button">Next</button>
@@ -80,15 +83,18 @@
                 <fieldset>
                     <div class="form-group mb-2">
                         <label class="sr-only" for="f1-email">Email</label>
-                        <input class="f1-email form-control" id="f1-email" type="text" name="f1-email" placeholder="Email..." required="">
+                        <input class="f1-email form-control" id="f1-email" type="text" name="f1-email"
+                            placeholder="Email..." required="">
                     </div>
                     <div class="form-group mb-2">
                         <label class="sr-only" for="f1-password">Password</label>
-                        <input class="f1-password form-control" id="f1-password" type="password" name="f1-password" placeholder="Password..." required="">
+                        <input class="f1-password form-control" id="f1-password" type="password" name="f1-password"
+                            placeholder="Password..." required="">
                     </div>
                     <div class="form-group mb-2">
                         <label class="sr-only" for="f1-repeat-password">Repeat password</label>
-                        <input class="f1-repeat-password form-control" id="f1-repeat-password" type="password" name="f1-repeat-password" placeholder="Repeat password..." required="">
+                        <input class="f1-repeat-password form-control" id="f1-repeat-password" type="password"
+                            name="f1-repeat-password" placeholder="Repeat password..." required="">
                     </div>
                     <div class="f1-buttons">
                         <button class="btn btn-primary btn-previous" type="button">Previous</button>
@@ -255,12 +261,12 @@
 </div>
 @endsection
 @push('script')
-    <script>
-        var ctx = document.getElementById('myBarGraph').getContext('2d');
+<script>
+    var ctx = document.getElementById('myBarGraph').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'bar',
-// The data for our dataset
+        // The data for our dataset
         data: {
             labels: ["Admin", "Belum Verifikasi","User Terverifikasi", "Pengelola"],
             datasets: [
@@ -269,15 +275,19 @@
                     backgroundColor: {!! json_encode($chart->colours)!!} ,
                     data:  {!! json_encode($chart->dataset)!!} ,
                 },
-            ]
+            }, ]
         },
-// Configuration options go here
+        // Configuration options go here
         options: {
             scales: {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        callback: function(value) {if (value % 1 === 0) {return value;}}
+                        callback: function (value) {
+                            if (value % 1 === 0) {
+                                return value;
+                            }
+                        }
                     },
                     scaleLabel: {
                         display: false
@@ -304,5 +314,6 @@
             }
         }
     });
-    </script>
+
+</script>
 @endpush

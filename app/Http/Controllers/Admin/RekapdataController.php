@@ -10,6 +10,7 @@ use App\Detailkpr;
 use App\Chart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class RekapdataController extends Controller
 {
@@ -238,5 +239,26 @@ class RekapdataController extends Controller
                 'pangkats' => Pangkat::count()
             ]
         );
+    }
+
+    public function index(Request $request)
+    {
+        $currentYear = $request->tahun;
+        if (!$request->tahun) {
+            $currentYear = date('Y');
+        }
+        //select Dynamic years
+        $year = DB::table('kpr')->select(DB::raw('YEAR(tmt_angsuran) as year'))->distinct()->orderBy('tmt_angsuran')->get();
+        $years = $year->pluck('year');
+        
+
+        $data = Detailkpr::select('tmt_angsuran', 'jml_tunggakan', 'pinjaman', 'pokok', 'bunga')->whereYear('tmt_angsuran', $request->tahun);
+        $totalTunggakan = $data->sum('jml_tunggakan');
+        $totalPinjaman = $data->sum('pinjaman');
+        $totalPokok = $data->sum('pokok');
+        $totalBunga = $data->sum('bunga');
+        $user = Detailkpr::count();
+        
+        return view('admin.rekapdata.tahun.index', compact('currentYear', 'totalTunggakan', 'totalPinjaman','totalPokok','totalBunga', 'user', 'years'));
     }
 }
